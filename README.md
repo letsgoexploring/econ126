@@ -1,2 +1,2 @@
 # econ126
-Computational Macroeconomics
+Computational Macroeconomics. Files are available when class is underway.
