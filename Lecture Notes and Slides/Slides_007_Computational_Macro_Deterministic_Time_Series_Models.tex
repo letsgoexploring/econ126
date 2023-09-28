@@ -1,0 +1,228 @@
+\documentclass[x11names]{beamer}
+\usepackage{etex,beamerfoils}
+\usepackage{array,pifont,amsmath,latexsym,epsfig,amsfonts,yfonts}
+\usepackage{amstext,amsopn,amsxtra,amsgen,amsbsy,amscd,amssymb,dcolumn,graphicx,setspace,pgfplots,booktabs,natbib}
+\usepackage[normalem]{ulem}
+\usepackage[all]{xy}
+\beamertemplatetheoremsnumbered
+\setbeamertemplate{caption}[numbered]
+\usetheme{Copenhagen}
+\definecolor{NewBlue}{RGB}{4, 114, 155}
+\definecolor{magenta}{cmyk}{0,1,0,0}
+\usecolortheme[named=NewBlue]{structure}
+%\usecolortheme[named=SkyBlue4]{structure}
+
+
+\newcommand{\D}{\displaystyle}
+\newcommand{\E}{\begin{eqnarray*}}
+\newcommand{\F}{\end{eqnarray*}}
+\newcommand{\EE}{\begin{eqnarray}}
+\newcommand{\FF}{\end{eqnarray}}
+\newcommand{\IZ}{\begin{itemize}}
+\newcommand{\ZI}{\end{itemize}}
+\newcommand{\EN}{\begin{enumerate}}
+\newcommand{\NE}{\end{enumerate}}
+\newcommand{\itemc}{\item[$\circ$]}
+\newcommand{\IZdash}{\begin{itemize} \renewcommand{\labelitemi}{-}}
+\newcommand{\tn}{\textnormal}
+
+% New commands to assist Beamer
+\newcommand{\itemi}{\item<1->}
+\newcommand{\itemii}{\item<2->}
+\newcommand{\itemiii}{\item<3->}
+\newcommand{\itemiv}{\item<4->}
+\newcommand{\itemv}{\item<5->}
+\newcommand{\itemvi}{\item<6->}
+\newcommand{\itemvii}{\item<7->}
+\newcommand{\itemviii}{\item<8->}
+\newcommand{\itemix}{\item<9->}
+\newcommand{\itemx}{\item<10->}
+
+\newcommand{\itemci}{\item[$\circ$]<1->}
+\newcommand{\itemcii}{\item[$\circ$]<2->}
+\newcommand{\itemciii}{\item[$\circ$]<3->}
+\newcommand{\itemciv}{\item[$\circ$]<4->}
+\newcommand{\itemcv}{\item[$\circ$]<5->}
+\newcommand{\itemcvi}{\item[$\circ$]<6->}
+\newcommand{\itemcvii}{\item[$\circ$]<7->}
+\newcommand{\itemcviii}{\item[$\circ$]<8->}
+\newcommand{\itemcix}{\item[$\circ$]<9->}
+\newcommand{\itemcx}{\item[$\circ$]<10->}
+
+
+\newcommand{\fr}{\frame}
+\newcommand{\ft}{\frametitle}
+\newcommand{\ons}{\onslide}
+\newcommand{\tc}{\textcolor}
+
+\pgfplotsset{height =7cm,compat=1.7,width=7cm,
+    standard/.style={
+    	unit vector ratio*=1 1 1,
+        axis x line=middle,
+        axis y line=middle,
+        enlarge x limits=0.15,
+        enlarge y limits=0.15,
+        every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+        every axis y label/.style={at={(current axis.above origin)},anchor=north east}
+    }
+}
+\newcommand{\drawge}{-- (rel axis cs:1,0) -- (rel axis cs:1,1) -- (rel axis cs:0,1) \closedcycle}
+\newcommand{\drawle}{-- (rel axis cs:1,1) -- (rel axis cs:1,0) -- (rel axis cs:0,0) \closedcycle}
+
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+
+\renewcommand{\bibsection}{}
+
+% Watermark example: https://texblog.org/2012/02/17/watermarks-draft-review-approved-confidential/
+\usepackage{draftwatermark}
+\SetWatermarkText{This content is protected and may not be shared uploaded or distributed.}
+\SetWatermarkScale{0.25}
+\SetWatermarkAngle{0}
+\SetWatermarkColor[gray]{1.0}
+\setbeamercolor{background canvas}{bg=}%transparent canvas
+
+\title[Deterministic Time Series Models\hspace{2em}\insertframenumber/
+\inserttotalframenumber]{Deterministic Time Series Models}
+\author[Brian C. Jenkins - Computational Macroeconomics ]{Brian C.~Jenkins \\ ~ \\Econ 126: Computational Macroeconomics\\ ~ \\University of California, Irvine}
+
+\begin{document}
+
+\frame{\maketitle}
+
+
+
+\fr{
+\ft{Introduction}
+
+\IZ
+\item Macroeconomic data evolve over time and there is good evidence that:
+	\EN
+	\itemii Historical events matter for the current economy
+	\itemiii Current events will matter for the future economy
+	\NE
+	
+\
+
+\itemiv We model the \emph{dynamic} nature of the economy using \emph{time series} models
+
+\
+
+\itemv A  \textbf{time series} model specifies how a variable or collection of variables are determined as a function of time.
+\ZI
+}
+
+\fr{
+\ft{Introduction}
+
+\IZ
+\item A  \textbf{time series} model specifies how a variable or collection of variables are determined as a function of time.
+
+\
+
+\itemii Time series models can be:
+
+	\EN
+	\itemiii \textbf{Deterministic}: non-random and purely mechanical
+	\itemiv \textbf{Stochastic}: Well-defined mathematical structure, but with random elements
+	\NE
+	
+\
+
+\itemv Deterministic models are well-suited for modeling long-run aspects of the economy
+
+\
+
+\itemvi Stochastic models are ideal for modeling business cycle fluctuations because the consensus is that cycles are caused by unpredictable disturbances
+\ZI
+}
+
+
+\fr{
+\ft{Discrete Versus Continuous Time}
+
+\IZ
+\item Let $y$ denote a variable that takes on the value $y_t$ at date $t$.
+
+\
+
+
+\itemii If $t$ takes on values from a countable sequence, e.g., $t\in [0,1,2,\ldots)$, then $y_t$ is a   \textbf{discrete time} variable.
+
+\
+
+\itemiii Otherwise, if $t$ takes on values from an uncountable sequence, e.g., $t\in [0,\infty)$, then $y_t$ is a \textbf{continuous time} variable.
+
+\
+
+\itemiv We will focus exclusively on discrete time models.
+\ZI
+
+}
+
+
+
+\fr{
+\ft{First-Order Difference Equations}
+
+\IZ
+\item Suppose that the variable $y_t$ is determined by a linear function of $y_{t-1}$ and some other exogenously given variable $w_t$:
+\begin{align}
+y_{t} & = \rho y_{t-1} + w_t,  \label{eqn:first_diff}
+\end{align}
+where $\rho$ is some constant.
+
+\
+
+\itemii Equation (\ref{eqn:first_diff}) is an example of a \textbf{linear first-order difference equation}.
+
+
+\ZI
+
+}
+
+\fr{
+\ft{Examples}
+\begin{exampleblock}{Example: Compounding Interest}
+
+\IZ
+\item Suppose that you have an initial balance of $b_0$ dollars in an account that pays an interest rate $i$ per compounding period.
+
+\itemii Your period $t$ balance depends on your period $t-1$ balance:
+\begin{align}
+b_{t} & =  \left(1+i\right) b_{t-1}. \label{eqn:compound_interst}
+\end{align}
+
+\
+
+\itemiii Equation (\ref{eqn:compound_interst}) is a linear first-order difference equation in the same form as Equation (\ref{eqn:first_diff}). You can see this by setting $y_t = b_t$, $\rho=1+i$, and $w_t=0$ in Equation (\ref{eqn:first_diff}).
+\ZI
+\end{exampleblock}
+
+}
+
+
+\fr{
+\ft{Examples}
+\begin{exampleblock}{Example: Physical Capital Accumulation}
+
+\IZ
+\itemi In the Solow growth model, the law of motion for physical capital is:
+\begin{align}
+K_{t+1} & =  I_t + (1-\delta)K_t, \label{eqn:capital_accumulation}
+\end{align}
+
+where $K_t$ is the capital stock in period $t$, $\delta$ is the rate of capital depreciation, and $I_t$ is investment in new capital
+
+\
+
+\itemii Treating investment $I_t$ as exogenous, Equation (\ref{eqn:capital_accumulation}) is a linear first-order difference equation in the same form as Equation (\ref{eqn:first_diff}). You can see this by setting $y_t = K_{t+1}$, $\rho=1-\delta$, and $w_t=I_t$ in Equation (\ref{eqn:first_diff}).
+\ZI
+\end{exampleblock}
+
+}
+
+
+
+\end{document}

@@ -1,0 +1,346 @@
+\documentclass[handout,x11names]{beamer}
+\usepackage{etex,beamerfoils}
+\usepackage{array,pifont,amsmath,latexsym,epsfig,amsfonts,yfonts}
+\usepackage{amstext,amsopn,amsxtra,amsgen,amsbsy,amscd,amssymb,dcolumn,graphicx,setspace,pgfplots,booktabs,natbib}
+\usepackage[normalem]{ulem}
+\usepackage[all]{xy}
+\beamertemplatetheoremsnumbered
+\setbeamertemplate{caption}[numbered]
+\usetheme{Copenhagen}
+\definecolor{NewBlue}{RGB}{4, 114, 155}
+\definecolor{magenta}{cmyk}{0,1,0,0}
+\usecolortheme[named=NewBlue]{structure}
+%\usecolortheme[named=SkyBlue4]{structure}
+
+\newcommand{\D}{\displaystyle}
+\newcommand{\E}{\begin{eqnarray*}}
+\newcommand{\F}{\end{eqnarray*}}
+\newcommand{\EE}{\begin{eqnarray}}
+\newcommand{\FF}{\end{eqnarray}}
+\newcommand{\IZ}{\begin{itemize}}
+\newcommand{\ZI}{\end{itemize}}
+\newcommand{\EN}{\begin{enumerate}}
+\newcommand{\NE}{\end{enumerate}}
+\newcommand{\itemc}{\item[$\circ$]}
+\newcommand{\IZdash}{\begin{itemize} \renewcommand{\labelitemi}{-}}
+\newcommand{\tn}{\textnormal}
+
+% New commands to assist Beamer
+\newcommand{\itemi}{\item<1->}
+\newcommand{\itemii}{\item<2->}
+\newcommand{\itemiii}{\item<3->}
+\newcommand{\itemiv}{\item<4->}
+\newcommand{\itemv}{\item<5->}
+\newcommand{\itemvi}{\item<6->}
+\newcommand{\itemvii}{\item<7->}
+\newcommand{\itemviii}{\item<8->}
+\newcommand{\itemix}{\item<9->}
+\newcommand{\itemx}{\item<10->}
+
+\newcommand{\itemci}{\item[$\circ$]<1->}
+\newcommand{\itemcii}{\item[$\circ$]<2->}
+\newcommand{\itemciii}{\item[$\circ$]<3->}
+\newcommand{\itemciv}{\item[$\circ$]<4->}
+\newcommand{\itemcv}{\item[$\circ$]<5->}
+\newcommand{\itemcvi}{\item[$\circ$]<6->}
+\newcommand{\itemcvii}{\item[$\circ$]<7->}
+\newcommand{\itemcviii}{\item[$\circ$]<8->}
+\newcommand{\itemcix}{\item[$\circ$]<9->}
+\newcommand{\itemcx}{\item[$\circ$]<10->}
+
+
+\newcommand{\fr}{\frame}
+\newcommand{\ft}{\frametitle}
+\newcommand{\ons}{\onslide}
+\newcommand{\tc}{\textcolor}
+
+\pgfplotsset{height =7cm,compat=1.7,width=7cm,
+    standard/.style={
+    	unit vector ratio*=1 1 1,
+        axis x line=middle,
+        axis y line=middle,
+        enlarge x limits=0.15,
+        enlarge y limits=0.15,
+        every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+        every axis y label/.style={at={(current axis.above origin)},anchor=north east}
+    }
+}
+\newcommand{\drawge}{-- (rel axis cs:1,0) -- (rel axis cs:1,1) -- (rel axis cs:0,1) \closedcycle}
+\newcommand{\drawle}{-- (rel axis cs:1,1) -- (rel axis cs:1,0) -- (rel axis cs:0,0) \closedcycle}
+
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+
+\renewcommand{\bibsection}{}
+
+% Watermark example: https://texblog.org/2012/02/17/watermarks-draft-review-approved-confidential/
+\usepackage{draftwatermark}
+\SetWatermarkText{This content is protected and may not be shared uploaded or distributed.}
+\SetWatermarkScale{0.25}
+\SetWatermarkAngle{0}
+\SetWatermarkColor[gray]{1.0}
+\setbeamercolor{background canvas}{bg=}%transparent canvas
+
+\title[Dynamic Optimization Intro\hspace{2em}\insertframenumber/
+\inserttotalframenumber]{Introduction to Dynamic Optimization}
+\author{Brian C.~Jenkins \\ ~ \\University of California, Irvine}
+
+\begin{document}
+
+\frame{\maketitle}
+
+
+
+\fr{
+\ft{Dynamic Optimization}
+
+\IZ
+\itemi Dynamic optimization is at the heart of macroeconomic theory. 
+
+\
+
+\itemii People and firms routinely make decisions that affect their future opportunities. 
+
+\
+
+\itemiii For example, a household chooses how much of its income to consume today and to save for the future.
+\ZI
+}
+
+
+\fr{
+\ft{A Two-Period Cake-Eating Problem}
+
+\IZ
+\item A person has some initial quantity of cake
+
+\
+
+\itemii The person receives utility from consuming cake in period 0 and in period 1 only.
+
+\
+
+\itemiii Problem: what is the optimal cake consumption path through periods 0 and 1?
+\ZI
+}
+
+
+\fr{
+\ft{Preferences}
+
+\IZ
+\itemi The person's utility in period 0 from consuming $C_0$ and $C_1$ is given by:
+
+\begin{align}
+U(C_0,C_1) & = \log C_0 + \beta \log C_1,
+\end{align}
+
+\
+
+\itemii $U$ is an \emph{intertemporal utility function} and $\log C$ is the \emph{flow} of utility generated each period.
+
+\
+
+\itemiii $0\leqslant\beta\leqslant 1$ is the person's \emph{subjective discount factor}.
+
+\
+
+%The utility function implies indifference curves of the form:
+%
+%\begin{align}
+%C_1 & =  e^{ \frac{\bar{U} - \log C_1}{\beta}},
+%\end{align}
+\ZI
+}
+
+\fr{
+\ft{Preferences}
+
+\IZ
+\itemi The utility function implies indifference curves of the form:
+
+\begin{align}
+C_1 & =  e^{ \frac{\bar{U} - \log C_0}{\beta}},
+\end{align}
+
+where $\bar{U}$ is some given level of utility.
+
+\
+
+\itemi As long as $0<\beta<1$, the indifference curves are convex to the origin.
+\ZI
+}
+
+
+
+
+\fr{
+\ft{Budget Constraints and the Boundary Condition}
+
+\IZ
+\itemi Let $K_t$ denote the quantity of cake available in period $t$  with $K_0$ given. 
+
+\
+
+\itemii The cake neither grows nor depreciates over time so the person faces the following budget constraints each period:
+
+\begin{align}
+C_0 & =  K_0 - K_1\\
+C_1 & =  K_1 - K_2.
+\end{align}
+\ZI
+
+}
+
+
+\fr{
+\ft{Budget Constraints and the Boundary Condition}
+
+\IZ
+\item A \emph{boundary condition} imposes a limit on the endpoint of the problem. 
+
+\
+
+\itemii Since the person only consumes cake in periods 0 and 1, there is no value in leaving leftover cake at the end of period 1 which implies the boundary condition:
+
+\begin{align}
+K_2 & = 0.
+\end{align}
+
+\ZI
+}
+
+
+
+\fr{
+\ft{Budget Constraints and the Boundary Condition}
+
+
+\IZ
+\itemi The boundary condition allows us to eliminate $K_2$ from the period 1 budget constraint:
+
+\begin{align}
+C_0 & =  K_0 - K_1\\
+C_1 & =  K_1.
+\end{align}
+
+
+\itemii Combine the two budget constraints to eliminate $K_1$ and obtain an \emph{intertemporal budget constraint}:
+
+\begin{align}
+C_1 & =  K_0 - C_0.
+\end{align}
+
+\
+
+\itemiii Notice that the implied price of $C_1$ in terms of $C_0$ is 1.
+
+\ZI
+}
+
+
+
+
+
+\fr{
+\ft{Optimization}
+
+\IZ
+\itemi The person's problem is to choose $C_0$, $C_1$, $K_1$, and $K_2$ to maximize his utility subject to the two budget constraints and the boundary condition. 
+
+\
+
+\itemii However, the problem can be simplified:
+
+	\EN
+	\itemiii Use the boundary condition to eliminate $K_2$ from the budget constraints. 
+	\itemiv Then use the budget constraints to substitute $C_0$ and $C_1$ out of the utility function. 
+	\NE
+
+\ZI
+}
+
+
+\fr{
+\ft{Optimization}
+
+\IZ
+\itemi The result is an unconstrained optimization problem in $K_1$.
+
+\begin{align}
+\max_{K_1} \; \log (K_0 - K_1) + \beta \log K_1,
+\end{align}
+
+\
+
+\itemii Take the derivative with respect to $K_1$ and set the derivative equal to zero to obtain the \emph{first-order} or \emph{optimality} condition:
+
+\begin{align}
+-\frac{1}{K_0 - K_1} + \frac{\beta}{K_1} & = 0.
+\end{align}
+\ZI
+}
+
+
+
+
+
+
+\fr{
+\ft{Optimization}
+
+\IZ
+\itemi Solve for $K_1$ to find the optimal cake holding for period 1:
+
+\begin{align}
+\boxed{K_1  = \frac{\beta}{1-\beta}K_0}
+\end{align}
+
+\
+
+\itemii Cake in period 1 is proportional to initial cake value.
+\ZI
+
+}
+
+
+\fr{
+\ft{Optimization}
+
+\IZ
+\itemi Then use the budget constraints to infer optimal cake consumption each period:
+\begin{align}
+\boxed{C_0  = \frac{1}{1+\beta}K_0}
+\end{align}
+
+and:
+
+\begin{align}
+\boxed{C_1  = \frac{\beta}{1+\beta}K_0}.
+\end{align}
+
+\
+
+\itemii Notice that $C_0 + C_1 = K_0$ so all of the cake is eaten by the end.
+
+
+\ZI
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

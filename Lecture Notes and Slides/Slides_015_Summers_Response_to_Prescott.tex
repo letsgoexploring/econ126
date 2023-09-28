@@ -1,0 +1,225 @@
+\documentclass[x11names]{beamer}
+\usepackage{etex,beamerfoils}
+\usepackage{array,pifont,amsmath,latexsym,epsfig,amsfonts,yfonts}
+\usepackage{amstext,amsopn,amsxtra,amsgen,amsbsy,amscd,amssymb,dcolumn,graphicx,setspace,pgfplots,booktabs,natbib}
+\usepackage[normalem]{ulem}
+\usepackage[all]{xy}
+\beamertemplatetheoremsnumbered
+\setbeamertemplate{caption}[numbered]
+\usetheme{Copenhagen}
+\definecolor{NewBlue}{RGB}{4, 114, 155}
+\definecolor{magenta}{cmyk}{0,1,0,0}
+\usecolortheme[named=NewBlue]{structure}
+%\usecolortheme[named=SkyBlue4]{structure}
+
+\newcommand{\D}{\displaystyle}
+\newcommand{\E}{\begin{eqnarray*}}
+\newcommand{\F}{\end{eqnarray*}}
+\newcommand{\EE}{\begin{eqnarray}}
+\newcommand{\FF}{\end{eqnarray}}
+\newcommand{\IZ}{\begin{itemize}}
+\newcommand{\ZI}{\end{itemize}}
+\newcommand{\EN}{\begin{enumerate}}
+\newcommand{\NE}{\end{enumerate}}
+\newcommand{\itemc}{\item[$\circ$]}
+\newcommand{\IZdash}{\begin{itemize} \renewcommand{\labelitemi}{-}}
+\newcommand{\tn}{\textnormal}
+
+% New commands to assist Beamer
+\newcommand{\itemi}{\item<1->}
+\newcommand{\itemii}{\item<2->}
+\newcommand{\itemiii}{\item<3->}
+\newcommand{\itemiv}{\item<4->}
+\newcommand{\itemv}{\item<5->}
+\newcommand{\itemvi}{\item<6->}
+\newcommand{\itemvii}{\item<7->}
+\newcommand{\itemviii}{\item<8->}
+\newcommand{\itemix}{\item<9->}
+\newcommand{\itemx}{\item<10->}
+
+\newcommand{\itemci}{\item[$\circ$]<1->}
+\newcommand{\itemcii}{\item[$\circ$]<2->}
+\newcommand{\itemciii}{\item[$\circ$]<3->}
+\newcommand{\itemciv}{\item[$\circ$]<4->}
+\newcommand{\itemcv}{\item[$\circ$]<5->}
+\newcommand{\itemcvi}{\item[$\circ$]<6->}
+\newcommand{\itemcvii}{\item[$\circ$]<7->}
+\newcommand{\itemcviii}{\item[$\circ$]<8->}
+\newcommand{\itemcix}{\item[$\circ$]<9->}
+\newcommand{\itemcx}{\item[$\circ$]<10->}
+
+
+\newcommand{\fr}{\frame}
+\newcommand{\ft}{\frametitle}
+\newcommand{\ons}{\onslide}
+\newcommand{\tc}{\textcolor}
+
+\pgfplotsset{height =7cm,compat=1.7,width=7cm,
+    standard/.style={
+    	unit vector ratio*=1 1 1,
+        axis x line=middle,
+        axis y line=middle,
+        enlarge x limits=0.15,
+        enlarge y limits=0.15,
+        every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+        every axis y label/.style={at={(current axis.above origin)},anchor=north east}
+    }
+}
+\newcommand{\drawge}{-- (rel axis cs:1,0) -- (rel axis cs:1,1) -- (rel axis cs:0,1) \closedcycle}
+\newcommand{\drawle}{-- (rel axis cs:1,1) -- (rel axis cs:1,0) -- (rel axis cs:0,0) \closedcycle}
+
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+
+\renewcommand{\bibsection}{}
+
+% Watermark example: https://texblog.org/2012/02/17/watermarks-draft-review-approved-confidential/
+\usepackage{draftwatermark}
+\SetWatermarkText{This content is protected and may not be shared uploaded or distributed.}
+\SetWatermarkScale{0.25}
+\SetWatermarkAngle{0}
+\SetWatermarkColor[gray]{1.0}
+\setbeamercolor{background canvas}{bg=}%transparent canvas
+
+\title[Summers' Response\hspace{2em}\insertframenumber/
+\inserttotalframenumber]{Lawrence Summers' Response to Prescott's Article}
+\author{Brian C.~Jenkins \\ ~ \\University of California, Irvine}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\fr{
+\ft{Introduction}
+
+\IZ
+\defcitealias{Prescott1986}{article by Edward Prescott} 
+\defcitealias{Summers1986}{Lawrence Summers: ``Some Skeptical Observations on Real Business Cycle Theory''} 
+\item The Fall 1986 issue of the Minneapolis Fed's \emph{Quarterly Review} featured an article by \citetalias{Prescott1986} summarizing the real business cycle (RBC) research program.
+
+\
+
+\itemii He argued that a stochastic neoclassical growth model could match empirical facts about the US business cycle.
+
+\
+
+\itemiii His framework has the appealing features that it is (relatively) simple and based on microeconomic principles.
+
+
+
+\ZI
+}
+
+
+
+\fr{
+\ft{Introduction}
+
+\IZ
+\item Prescott concludes on page 21 that:
+
+\IZ
+\itemii[] \emph{Economic fluctuations are optimal responses to uncertainty in the rate of technological change.}
+\ZI
+
+\onslide<3->{and that the:}
+
+\IZ
+\itemiv[] \emph{attention [of policymakers] should be focused not on fluctuations in output but rather on determinants of the average rate of technological advance.}
+\ZI
+
+\
+
+\itemv Both points were and are controversial to many macroeconomists
+\ZI
+}
+
+
+\fr{
+\ft{Summers' Response}
+
+\IZ
+\defcitealias{Summers1986}{Summers' article, ``Some Skeptical Observations on Real Business Cycle Theory''} 
+\item The issue of the \emph{Quarterly Review} in which Prescott's article appeared also featured a reaction by Lawrence Summers.
+
+\
+
+\itemii \citetalias{Summers1986}, presents sharp criticisms of RBC theory.
+\ZI
+}
+
+
+\fr{
+\ft{Summers' Response}
+
+\IZ
+\item In the opening of the article, Summers asserts that RBC theory is at odds with
+
+\IZ
+\itemii[] \emph{propositions thought self-evident by many macroeconomists and all of those involved in forecasting and controlling the economy on a day-to-day basis.}
+\ZI
+
+\
+
+\itemii Summers provides four specific critiques of Prescott's framework
+\ZI
+}
+
+\fr{
+\ft{Summers' Response}
+
+\IZ
+\item Summary of Summers' critiques:
+
+	\EN
+	\itemii The parameterization that Prescott uses in the simulations are suspect.
+	\itemiii Prescott doesn't provide supporting evidence for the existence of TFP shocks.
+	\itemiv Prescott doesn't explore whether his RBC model can match price (e.g., real wages, interest rates) data.
+	\itemv Prescott's model completely disregards the large-scale market failures that accompany business cycle downturns (e.g., unemployment)
+	\NE
+\ZI
+}
+
+
+
+\fr{
+\ft{Summers' Response}
+
+\IZ
+\item Summers claims that progress in macroeconomics depends on
+
+\IZ
+\itemii[] \emph{the development of theories that can explain why exchange sometimes works well and other times breaks down.}
+\ZI
+
+\
+
+\itemiii And he concludes with:
+
+\IZ
+\itemiv[] \emph{Nothing could be more counterproductive in this regard than a lengthy professional detour into the analysis of stochastic Robinson Crusoes.}
+\ZI
+
+\
+
+\itemv In the first point he was prescient but in the last point he was greatly mistaken
+
+\
+
+\itemvi Contemporary business cycle models incorporate market failures into RBC-style models with great success.
+
+\ZI
+
+
+}
+
+
+
+\fr{
+\ft{References}
+\bibliographystyle{aer}
+\bibliography{comp_econ_references.bib}
+}
+
+\end{document}

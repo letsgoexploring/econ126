@@ -1,0 +1,58 @@
+\begin{figure}[t] \caption{\label{fig:two_per_flow_utility} \textbf{The household's indifference curves} over combinations of consumption in periods 0 and 1.}
+
+
+	\begin{center}
+
+	\begin{tikzpicture}
+	\begin{axis}[standard,%tiny,
+    %scale only axis,
+    font=\small,
+    ytick={0},
+    yticklabels={0},
+    xtick={0},
+    xticklabels={0},
+    minor tick num=0,
+    axis y line=left,
+    axis x line=middle,
+    xmin = 0,
+    xmax = 5,
+    ymin = 0,
+    ymax = 5,
+    xlabel style={at=(current axis.right of origin), anchor=west,text width=0 cm},
+    ylabel style={left},
+    xlabel=$C_0$,ylabel=$C_1$,
+%    title={(B) Indifference curves}
+	]
+	%\addplot[smooth,blue,mark=none,line width = 1.5pt,
+	%domain=0:4.25,samples=100]
+	%{exp(0.25-0.95*ln(x))} node [pos=1,inner sep=2pt,label=right:$\bar{u}_0$] {};
+	\addplot[smooth,blue,mark=none,line width = 1.5pt,
+	domain=0:4.25,samples=100]
+	{exp(.5-0.95*ln(x))} node [pos=1,inner sep=2pt,label=right:$\bar{U}_1$] {};
+	\addplot[smooth,blue,mark=none,line width = 1.5pt,
+	domain=0:4.25,samples=100]
+	{exp(1.25-0.95*ln(x))} node [pos=1,inner sep=2pt,label=right:$\bar{U}_2$] {};
+	\addplot[smooth,blue,mark=none,line width = 1.5pt,
+	domain=0:4.25,samples=100]
+	{exp(1.775-0.95*ln(x))} node [pos=1,inner sep=2pt,label=right:$\bar{U}_3$] {};
+	%\addplot[smooth,blue,mark=none,line width = 1.5pt,
+	%domain=0:4.25,samples=100]
+	%{exp(-0.95*ln(x))} node [pos=1,inner sep=2pt,label=right:$\bar{u}_0$] {};
+	
+	%\addplot[smooth,blue,mark=none,line width = 1.5pt,
+	%domain=1:4,samples=100]
+	%{exp(ln(2)+ln(2.5)-ln(x))} node [pos=0.95,inner sep=2pt,label=right:$\bar{U}^*$] {};
+	%\addplot[blue,dotted,mark=,line width = 1pt]
+	%coordinates{(0,3) (3,3) (3,0)};
+	%\addplot[blue,solid,mark=*,line width = 1pt]
+	%coordinates{(3,3)} node[pos=0.5, above, font=\footnotesize, yshift=0pt,xshift = 25pt] {endowment};
+	%\addplot[magenta,dotted,mark=,line width = 1pt]
+	%coordinates{(2,0) (2,2.5) (0,2.5)};
+	%\addplot[magenta,solid,mark=*,line width = 1pt]
+	%coordinates{(2,2.5)} ;
+	\addplot[->,black,mark=none,line width = 1pt]
+	coordinates{(1,1) (3,3)} node [pos=1,inner sep=2pt,xshift=5pt,label=above:increasing $U$] {};
+	\end{axis}
+	\end{tikzpicture}
+	\end{center}
+\end{figure}
