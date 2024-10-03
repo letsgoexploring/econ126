@@ -1,0 +1,7 @@
+otter assign *ipynb dist
+
+
+""" # BEGIN TEST CONFIG
+points: 1
+hidden: false
+""" # END TEST CONFIG
